@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>Test example</title>
+</head>
+<body>
+	<form novalidate id='login-form' method="post"
+		onsubmit="javascript: submitLoginForm();" action="">
+		<label class="hidden-label" for="Email">Tên đăng nhập</label> <input
+			id="Email" name="j_username" type="text" placeholder="Tên đăng nhập" />
+		<label class="hidden-label" for="Passwd">Mật khẩu</label> <input
+			id="Passwd" name="j_password" type="password" placeholder="Mật khẩu" />
+		<input id="signIn" name="signIn" class="rc-button rc-button-submit"
+			type="submit" value="Đăng nhập" />
+	</form>
+	
+	<script type="text/javascript">
+		function submitLoginForm() {
+			var loginForm = document.getElementById('login-form');
+			var submitUrl = '<c:url value="/login/j_spring_security_check" />';
+			var currentHref = window.location.href;
+			loginForm.action = submitUrl + '?'
+							 + currentHref.substring(
+									 currentHref.lastIndexOf('<fmt:message key="mso.login.returnUrlParam" />'));
+		}
+	</script>
+</body>
+</html>
